@@ -69,22 +69,45 @@ h1.v{font-family:var(--display);font-size:34px;letter-spacing:.03em;font-weight:
 .btn.ghost{background:transparent}
 .btn:disabled{opacity:.4;cursor:default}
 
-/* Table map */
-.maphead{display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:space-between;margin-bottom:16px}
-.legend{display:flex;gap:14px;font-size:13px;color:var(--ink-2)}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-.floor{position:relative;width:100%;max-width:min(1000px,calc((100vh - 260px) * 1.6));aspect-ratio:16/10;background:var(--paper);border:2px solid var(--ink);border-radius:6px;margin:0 auto}
-.floor .zone{position:absolute;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
-.floor .counter{position:absolute;right:0;top:0;width:18%;height:34%;background:var(--ground);border-left:2px dashed var(--line);border-bottom:2px dashed var(--line);display:grid;place-items:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);text-align:center}
-.floor .door{position:absolute;bottom:-2px;left:42%;width:14%;height:6px;background:var(--paper);border-left:2px solid var(--ink);border-right:2px solid var(--ink)}
-.tbl{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center;border-radius:10px;background:var(--paper);border:2px solid var(--ink);font-family:var(--display);font-size:26px;line-height:1;transition:transform .12s}
-.tbl small{display:block;font-family:var(--body);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-top:3px}
+/* Table map: a drawn floor plan. Large, high-contrast type to match the guest menu. */
+.tables h1.v{font-size:52px}
+body.ko .tables h1.v{font-size:38px}
+.lead{font-size:19px;color:var(--ink-2);margin:8px 0 0;line-height:1.4}
+.maphead{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+.tables .layoutset{font-size:15px;font-weight:600}
+.tables .seg button{padding:11px 16px;font-size:15px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:0 auto 16px;max-width:min(1060px,calc((100vh - 340px) * 1.6))}
+.lchip{display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-size:16px;font-weight:600}
+.lchip i{width:18px;height:18px;border-radius:6px;border:2.5px solid var(--ink);background:var(--paper)}
+.lchip.k i{background:var(--red);border-color:var(--red)}
+.lchip.p i{background:var(--ink)}
+.lchip b{font-variant-numeric:tabular-nums;min-width:26px;padding:2px 8px;border-radius:999px;background:var(--ground);text-align:center;font-size:14px}
+.movebar{max-width:min(1060px,calc((100vh - 340px) * 1.6));margin:0 auto 14px;background:var(--amber-soft);color:#6b4100;border-radius:14px;padding:14px 18px;font-size:18px;font-weight:700}
+.floor{--tile:#efebe6;container-type:inline-size;position:relative;width:100%;max-width:min(1060px,calc((100vh - 340px) * 1.6));aspect-ratio:16/10;margin:0 auto;border:3px solid var(--ink);border-radius:20px;
+  background-color:var(--paper);background-image:linear-gradient(var(--tile) 1px,transparent 1px),linear-gradient(90deg,var(--tile) 1px,transparent 1px);background-size:6.25% 10%;background-position:-1px -1px}
+.floor .kitchen{position:absolute;right:0;top:0;width:19%;height:36%;border-left:3px solid var(--ink);border-bottom:3px solid var(--ink);border-radius:0 17px 0 14px;
+  background:repeating-linear-gradient(135deg,#f4f2ef 0 10px,#ebe6e0 10px 20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:8px}
+.floor .kitchen svg{width:34%;height:auto}
+.floor .kitchen b{font-size:clamp(11px,1.25vw,15px);letter-spacing:.08em;text-transform:uppercase;line-height:1.3}
+.floor .entry{position:absolute;bottom:-3px;left:43%;width:14%;height:3px;background:var(--paper)}
+.floor .entry svg{position:absolute;left:0;bottom:3px;width:100%;height:auto;overflow:visible}
+.floor .entry span{position:absolute;bottom:10px;left:56%;font-size:clamp(11px,1.25vw,15px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:var(--ink-2)}
+.floor .tag{position:absolute;left:21%;bottom:14px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--amber-soft);color:#6b4100;padding:6px 12px;border-radius:999px}
+.tbl{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35cqw;padding:0;border-radius:14px;background:var(--paper);border:3px solid var(--ink);
+  box-shadow:0 4px 0 rgba(21,20,19,.14);transition:transform .12s}
+.tbl .n{font-family:var(--display);font-size:clamp(30px,3.9vw,50px);font-size:4.6cqw;line-height:.86;padding-top:.08em;font-variant-numeric:tabular-nums}
+.tbl .st{font-size:clamp(13px,1.6vw,19px);font-size:2.05cqw;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-2);line-height:1.1;text-align:center;padding:0 4px;white-space:nowrap}
+.tbl:not(.round)::before,.tbl:not(.round)::after{content:"";position:absolute;left:20%;right:20%;height:8px;border-radius:5px;background:#d6cfc7}
+.tbl:not(.round)::before{top:-15px}
+.tbl:not(.round)::after{bottom:-15px}
 .tbl.round{border-radius:50%}
-.tbl.busy{background:var(--red);border-color:var(--red);color:#fff}
-.tbl.busy small{color:#ffe3e0}
-.tbl.pay{background:var(--ink);border-color:var(--ink);color:#fff}
-.tbl.pay small{color:#cfc9c4}
-.tbl:active{transform:translate(-50%,-50%) scale(.95)}
+.tbl.round::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:6px dotted #d6cfc7;pointer-events:none}
+.tbl.busy{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 0 var(--red-dark)}
+.tbl.busy .st{color:#fff}
+.tbl.pay{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 4px 0 #000}
+.tbl.pay .st{color:#e6e0db}
+.tbl:active{transform:translate(-50%,-50%) translateY(3px);box-shadow:0 1px 0 rgba(21,20,19,.14)}
+.note{text-align:center;font-size:16px;color:var(--ink-2);margin:18px 0 0}
 
 /* ---------- Guest menu: large type ---------- */
 .menu{display:grid;grid-template-columns:210px minmax(0,1fr) 340px;grid-template-rows:auto minmax(0,1fr);height:100%;min-height:0;background:var(--paper)}
@@ -408,10 +431,13 @@ function optsFor(id){return BY[id]&&BY[id].cat==="pho"?PHO_OPTS:[];}
 
 /* Sample floor plan. Replace once interior photos arrive. x/y are % of the floor box. */
 var TABLES=[
-  {n:1,x:9,y:18,w:11,h:14},{n:2,x:9,y:44,w:11,h:14},{n:3,x:9,y:70,w:11,h:14},
-  {n:4,x:30,y:24,w:10,h:15,round:1},{n:5,x:47,y:24,w:10,h:15,round:1},{n:6,x:64,y:24,w:10,h:15,round:1},
-  {n:7,x:30,y:58,w:13,h:15},{n:8,x:50,y:58,w:13,h:15},{n:9,x:70,y:58,w:13,h:15},
-  {n:10,x:90,y:52,w:11,h:13},{n:11,x:90,y:76,w:11,h:13}
+  /* left wall: 3 square tables, one column */
+  {n:1,x:12,y:20,w:14,h:20},{n:2,x:12,y:50,w:14,h:20},{n:3,x:12,y:80,w:14,h:20},
+  /* middle: round tables above, square tables below, sharing the same 3 columns */
+  {n:4,x:33,y:26,w:14,h:22.4,round:1},{n:5,x:50,y:26,w:14,h:22.4,round:1},{n:6,x:67,y:26,w:14,h:22.4,round:1},
+  {n:7,x:33,y:68,w:14,h:20},{n:8,x:50,y:68,w:14,h:20},{n:9,x:67,y:68,w:14,h:20},
+  /* right wall, below the kitchen */
+  {n:10,x:89,y:54,w:14,h:20},{n:11,x:89,y:81,w:14,h:20}
 ];
 var PIN="1234";
 
@@ -427,7 +453,7 @@ var ST={
     demo:"Demo. Menu and prices come from public online listings and need to be checked by the owner. Korean names are first drafts. Pho choices are samples. Server PIN is 1234.",
     pick:"Pick a table",pickSub:"Tap the table, then hand the iPad to the guests.",move:"Move order to which table?",moveSub:"The guests' items are kept. Tap the correct table.",
     layout:"Guest menu layout",cols:" columns",open:"Open",inKitchen:"Order in kitchen",counter:"Counter<br>&amp; kitchen",entrance:"Entrance",sample:"Sample layout",
-    table:"Table",ordered:"Ordered",mapNote:"This map is a placeholder. It will be redrawn from photos of the dining room.",colsToast:function(c){return "Guest menu set to "+c+" columns on this iPad";},
+    table:"Table",ordered:"Ordered",stOpen:"Open",stPay:"Unpaid",mapNote:"This map is a placeholder. It will be redrawn from photos of the dining room.",colsToast:function(c){return "Guest menu set to "+c+" columns on this iPad";},
     pinTitle:"Enter server PIN",back:"Back",pinChange:"Change table",pinConfirm:"Confirm order",cancel:"Cancel",wrongPin:"Wrong PIN. Try again.",
     confirm:"Confirm order",confirmSub:"Read it back to the guests. Change anything before sending.",noItems:"No items left. Add items or cancel this order.",
     subtotal:"Subtotal",beforeTax:"(before tax)",addMore:"Add more items",moveIt:"Wrong table? Move it",cancelOrder:"Cancel order",send:"Send to kitchen",change:"Change",
@@ -455,7 +481,7 @@ var ST={
     demo:"데모입니다. 메뉴와 가격은 온라인 정보를 바탕으로 했으며 사장님 확인이 필요합니다. 한국어 메뉴명은 초안입니다. 쌀국수 옵션은 샘플입니다. 직원 PIN은 1234입니다.",
     pick:"테이블 선택",pickSub:"테이블을 누른 후 손님께 iPad를 건네주세요.",move:"어느 테이블로 옮길까요?",moveSub:"주문 내용은 그대로 유지됩니다. 맞는 테이블을 누르세요.",
     layout:"손님 메뉴 배열",cols:"열",open:"빈 테이블",inKitchen:"주문 진행 중",counter:"카운터<br>&amp; 주방",entrance:"입구",sample:"샘플 배치도",
-    table:"테이블",ordered:"주문됨",mapNote:"이 배치도는 임시입니다. 매장 내부 사진을 받으면 다시 그립니다.",colsToast:function(c){return "이 iPad의 손님 메뉴가 "+c+"열로 설정되었습니다";},
+    table:"테이블",ordered:"주문됨",stOpen:"빈자리",stPay:"결제 대기",mapNote:"이 배치도는 임시입니다. 매장 내부 사진을 받으면 다시 그립니다.",colsToast:function(c){return "이 iPad의 손님 메뉴가 "+c+"열로 설정되었습니다";},
     pinTitle:"직원 PIN 입력",back:"뒤로",pinChange:"테이블 변경",pinConfirm:"주문 확인",cancel:"취소",wrongPin:"PIN이 틀렸습니다. 다시 입력하세요.",
     confirm:"주문 확인",confirmSub:"손님께 주문을 다시 확인하고, 보내기 전에 필요한 부분을 수정하세요.",noItems:"남은 메뉴가 없습니다. 메뉴를 추가하거나 주문을 취소하세요.",
     subtotal:"합계",beforeTax:"(세금 별도)",addMore:"메뉴 추가",moveIt:"테이블 변경",cancelOrder:"주문 취소",send:"주방으로 보내기",change:"변경",
@@ -572,20 +598,25 @@ function render(){
 function tab(id,label){var cur=(S.mode===id)||(id==="tables"&&S.mode==="confirm");return '<button data-act="mode" data-v="'+id+'" aria-current="'+cur+'">'+label+'</button>';}
 
 function vTables(){
-  var busy=busyTables();
-  var h='<div class="pad"><div class="maphead"><div><h1 class="v">'+(S.moving?t("move"):t("pick"))+'</h1><p class="sub">'+(S.moving?t("moveSub"):t("pickSub"))+'</p></div>'+
-    '<div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end">'+
+  var busy=busyTables(),nK=0,nP=0;
+  Object.keys(busy).forEach(function(k){if(busy[k]==="kitchen")nK++;else nP++;});
+  var nO=TABLES.length-nK-nP;
+  var h='<div class="pad tables"><div class="maphead"><div><h1 class="v">'+(S.moving?t("move"):t("pick"))+'</h1><p class="lead">'+(S.moving?t("moveSub"):t("pickSub"))+'</p></div>'+
     '<div class="layoutset"><span>'+t("layout")+'</span><div class="seg" role="group" aria-label="'+t("layout")+'">'+
       [2,3].map(function(c){var ic="";for(var i=0;i<c;i++)ic+="<i></i>";return '<button data-act="cols" data-v="'+c+'" aria-pressed="'+(S.cols===c)+'"><span class="ic" style="grid-template-columns:repeat('+c+',6px)">'+ic+'</span>'+c+t("cols")+'</button>';}).join("")+
-    '</div></div>'+
-    '<div class="legend"><span><i style="background:#fff;border:2px solid #151413"></i>'+t("open")+'</span><span><i style="background:var(--red)"></i>'+t("inKitchen")+'</span><span><i style="background:var(--ink)"></i>'+t("waitingPay")+'</span></div></div></div>';
-  h+='<div class="floor" role="group" aria-label="Floor plan"><div class="counter">'+t("counter")+'</div><div class="door"></div>'+
-     '<span class="zone" style="left:50%;bottom:10px;transform:translateX(-50%)">'+t("entrance")+'</span>'+
-     '<span class="zone" style="left:12px;top:8px">'+t("sample")+'</span>';
+    '</div></div></div>';
+  if(S.moving) h+='<div class="movebar">'+t("moveSub")+'</div>';
+  h+='<div class="legend"><span class="lchip"><i></i>'+t("open")+'<b>'+nO+'</b></span><span class="lchip k"><i></i>'+t("inKitchen")+'<b>'+nK+'</b></span><span class="lchip p"><i></i>'+t("waitingPay")+'<b>'+nP+'</b></span></div>';
+  h+='<div class="floor" role="group" aria-label="Floor plan">'+
+    '<div class="kitchen">'+ICON.bowl+'<b>'+t("counter")+'</b></div>'+
+    '<div class="entry"><svg viewBox="0 0 100 50" aria-hidden="true"><path d="M2 48 A46 46 0 0 1 48 2" fill="none" stroke="#9a938c" stroke-width="2" stroke-dasharray="4 4"/><path d="M2 48 L48 48" stroke="#9a938c" stroke-width="2"/></svg><span>'+t("entrance")+'</span></div>'+
+    '<span class="tag">'+t("sample")+'</span>';
   TABLES.forEach(function(tb){
-    h+='<button class="tbl'+(tb.round?" round":"")+(busy[tb.n]==="kitchen"?" busy":busy[tb.n]==="pay"?" pay":"")+'" style="left:'+tb.x+'%;top:'+tb.y+'%;width:'+tb.w+'%;height:'+tb.h+'%" data-act="table" data-v="'+tb.n+'" aria-label="'+t("table")+' '+tb.n+(busy[tb.n]==="kitchen"?", "+t("inKitchen"):busy[tb.n]==="pay"?", "+t("waitingPay"):"")+'">'+tb.n+'<small>'+(busy[tb.n]==="kitchen"?t("ordered"):busy[tb.n]==="pay"?t("waitingPay"):t("table"))+'</small></button>';
+    var st=busy[tb.n];
+    h+='<button class="tbl'+(tb.round?" round":"")+(st==="kitchen"?" busy":st==="pay"?" pay":"")+'" style="left:'+tb.x+'%;top:'+tb.y+'%;width:'+tb.w+'%;height:'+tb.h+'%" data-act="table" data-v="'+tb.n+'" aria-label="'+t("table")+' '+tb.n+', '+(st==="kitchen"?t("inKitchen"):st==="pay"?t("waitingPay"):t("open"))+'">'+
+      '<span class="n">'+tb.n+'</span><span class="st">'+(st==="kitchen"?t("ordered"):st==="pay"?t("stPay"):t("stOpen"))+'</span></button>';
   });
-  h+='</div><p class="sub" style="text-align:center;margin-top:14px">'+t("mapNote")+'</p></div>';
+  h+='</div><p class="note">'+t("mapNote")+'</p></div>';
   return h;
 }
 
